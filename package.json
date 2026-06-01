@@ -1,0 +1,20 @@
+{
+  "name": "simulacro-js",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "api": "json-server --watch db.json --port 3000",
+    "dev:full": "concurrently \"npm run dev\" \"npm run api\""
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.1",
+    "json-server": "^1.0.0-beta.15",
+    "vite": "^8.0.12"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.0",
+    "tailwindcss": "^4.3.0"
+  }
+}

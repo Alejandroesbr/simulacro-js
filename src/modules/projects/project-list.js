@@ -1,0 +1,1 @@
+// Tabla/cards + acciones por rol

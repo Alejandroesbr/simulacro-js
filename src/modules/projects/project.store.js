@@ -1,0 +1,1 @@
+// Lista en memoria, filtra por rol

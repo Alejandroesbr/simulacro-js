@@ -1,0 +1,1 @@
+// hashchange → renderiza vistas + guards

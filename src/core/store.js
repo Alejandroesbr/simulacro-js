@@ -1,0 +1,1 @@
+// Estado global: user, role, projects
