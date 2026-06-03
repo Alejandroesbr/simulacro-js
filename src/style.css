@@ -9,3 +9,36 @@
   --color-success: #22c55e;
   --color-warning: #f59e0b;
 }
+
+:root {
+  --app-bg: #f8fafc;
+  --app-text: #0f172a;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+  --muted: #64748b;
+}
+
+body {
+  background: var(--app-bg);
+  color: var(--app-text);
+}
+
+body.dark {
+  --app-bg: #0f172a;
+  --app-text: #e2e8f0;
+  --surface: #1e293b;
+  --border: #334155;
+  --muted: #cbd5e1;
+}
+
+body.dark :is(.bg-white, .bg-slate-50) {
+  background-color: var(--surface) !important;
+}
+
+body.dark :is(.border-slate-200, .border-slate-300, .border) {
+  border-color: var(--border) !important;
+}
+
+body.dark :is(.text-slate-900, .text-slate-700, .text-slate-500) {
+  color: var(--muted) !important;
+}

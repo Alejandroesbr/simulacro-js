@@ -5,7 +5,7 @@ import { ROLES } from "../modules/auth/auth.constants.js";
 import { bindLoginForm, renderLoginForm } from "../modules/auth/login-form.js";
 import { bindProjectForm, renderProjectForm } from "../modules/projects/project-form.js";
 import { bindProjectListEvents, renderProjectList } from "../modules/projects/project-list.js";
-import { escapeHtml } from "../shared/dom.js";
+import { escapeHtml, render } from "../shared/dom.js";
 import { toast } from "../shared/toast.js";
 
 export function initRouter() {
@@ -21,7 +21,7 @@ export async function renderRoute() {
   try {
     await resolveRoute();
   } catch (error) {
-    document.querySelector("#app").innerHTML = `
+    render("#app", `
       ${navbar()}
       <main class="mx-auto max-w-3xl px-4 py-8">
         <section class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
@@ -30,7 +30,7 @@ export async function renderRoute() {
           <a class="mt-4 inline-block rounded-md bg-primary px-4 py-2 font-medium text-white" href="#/dashboard">Go to dashboard</a>
         </section>
       </main>
-    `;
+    `);
     bindNavbarEvents();
     toast(error.message, "danger");
   }
@@ -50,7 +50,7 @@ async function resolveRoute() {
       return;
     }
 
-    document.querySelector("#app").innerHTML = renderLoginForm();
+    render("#app", renderLoginForm());
     bindLoginForm();
     return;
   }
@@ -99,10 +99,10 @@ async function resolveRoute() {
 }
 
 async function renderProtectedView(html) {
-  document.querySelector("#app").innerHTML = `
+  render("#app", `
     ${navbar()}
     <main id="view">${html}</main>
-  `;
+  `);
   bindNavbarEvents();
 }
 

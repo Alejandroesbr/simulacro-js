@@ -2,6 +2,7 @@ import { navigate } from "../../core/router.js";
 import { hideLoader, showLoader } from "../../shared/loader.js";
 import { toast } from "../../shared/toast.js";
 import { email, maxLength, minLength, required } from "../../shared/validators.js";
+import { qs } from "../../shared/dom.js";
 import { login } from "./auth.service.js";
 
 export function renderLoginForm() {
@@ -44,11 +45,11 @@ export function renderLoginForm() {
 }
 
 export function bindLoginForm() {
-  document.querySelector("#login-form")?.addEventListener("submit", async (event) => {
+  qs("#login-form")?.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const emailInput = document.querySelector("#email");
-    const passwordInput = document.querySelector("#password");
+    const emailInput = qs("#email");
+    const passwordInput = qs("#password");
     const emailError =
       required("Email is required")(emailInput.value) ||
       email("Email format is invalid")(emailInput.value) ||
@@ -57,8 +58,8 @@ export function bindLoginForm() {
       required("Password is required")(passwordInput.value) ||
       minLength(6, "Password must have at least 6 characters")(passwordInput.value);
 
-    document.querySelector("#email-error").textContent = emailError || "";
-    document.querySelector("#password-error").textContent = passwordError || "";
+    qs("#email-error").textContent = emailError || "";
+    qs("#password-error").textContent = passwordError || "";
 
     if (emailError || passwordError) return;
 

@@ -1,9 +1,11 @@
+import { createElement } from "./dom.js";
+
 let loaderElement = null;
 
 export function showLoader(message = "Loading...") {
   if (loaderElement) return;
 
-  loaderElement = document.createElement("div");
+  loaderElement = createElement("div");
   loaderElement.className =
     "fixed inset-0 z-50 grid place-items-center bg-slate-950/40";
   loaderElement.innerHTML = `

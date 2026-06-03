@@ -1,6 +1,6 @@
 import { get } from "../../api/api.js";
 import { navigate } from "../../core/router.js";
-import { escapeHtml } from "../../shared/dom.js";
+import { escapeHtml, qs } from "../../shared/dom.js";
 import { hideLoader, showLoader } from "../../shared/loader.js";
 import { toast } from "../../shared/toast.js";
 import { maxLength, minLength, oneOf, required } from "../../shared/validators.js";
@@ -83,13 +83,13 @@ export async function renderProjectForm(id = null) {
 }
 
 export function bindProjectForm(id = null) {
-  document.querySelector("#project-form")?.addEventListener("submit", async (event) => {
+  qs("#project-form")?.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const title = document.querySelector("#title").value.trim();
-    const description = document.querySelector("#description").value.trim();
-    const status = document.querySelector("#status").value;
-    const assignedTo = document.querySelector("#assignedTo").value;
+    const title = qs("#title").value.trim();
+    const description = qs("#description").value.trim();
+    const status = qs("#status").value;
+    const assignedTo = qs("#assignedTo").value;
 
     const allowedUserIds = users.map((user) => String(user.id));
     const titleError =
@@ -105,10 +105,10 @@ export function bindProjectForm(id = null) {
       required("Assigned user is required")(assignedTo) ||
       oneOf(allowedUserIds, "Assigned user does not exist")(assignedTo);
 
-    document.querySelector("#title-error").textContent = titleError || "";
-    document.querySelector("#description-error").textContent = descriptionError || "";
-    document.querySelector("#status-error").textContent = statusError || "";
-    document.querySelector("#assignedTo-error").textContent = assignedToError || "";
+    qs("#title-error").textContent = titleError || "";
+    qs("#description-error").textContent = descriptionError || "";
+    qs("#status-error").textContent = statusError || "";
+    qs("#assignedTo-error").textContent = assignedToError || "";
 
     if (titleError || descriptionError || statusError || assignedToError) return;
 

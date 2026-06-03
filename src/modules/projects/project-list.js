@@ -1,5 +1,5 @@
 import { getUser } from "../../core/store.js";
-import { escapeHtml } from "../../shared/dom.js";
+import { escapeHtml, qsAll } from "../../shared/dom.js";
 import { toast } from "../../shared/toast.js";
 import { ROLES } from "../auth/auth.constants.js";
 import { STATUS_LABELS } from "./project.constants.js";
@@ -40,7 +40,7 @@ export async function renderProjectList() {
 }
 
 export function bindProjectListEvents() {
-  document.querySelectorAll("[data-delete-project]").forEach((button) => {
+  qsAll("[data-delete-project]").forEach((button) => {
     button.addEventListener("click", async () => {
       const id = button.dataset.deleteProject;
       const confirmed = confirm("Delete this project?");

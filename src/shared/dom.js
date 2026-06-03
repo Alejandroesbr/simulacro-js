@@ -8,6 +8,10 @@ export function render(selector, html) {
   document.querySelector(selector).innerHTML = html;
 }
 
+export function qsAll(selector) {
+  return document.querySelectorAll(selector);
+}
+
 export function createElement(tag, text = "") {
   const element = document.createElement(tag);
   element.textContent = text;
